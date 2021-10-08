@@ -9,9 +9,9 @@ function A() {
   }
   return (
     <div>
-      cccxsss
+      cccxsssss
       <button onClick ={onClick}>jjjj</button>
-      <h1 className="a"c>ssjjj</h1>
+      <h1 className="a">ssjjj</h1>
       <img src={logo}></img>
     </div>
   );

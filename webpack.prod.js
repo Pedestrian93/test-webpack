@@ -4,7 +4,7 @@ const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const miniCssExtractPlugin = require("mini-css-extract-plugin");
 const optimizeCssAssetsWebpackPlugin = require("optimize-css-assets-webpack-plugin");
 const postcssPresetEnv = require("postcss-preset-env");
-const teaserWebpackPlugin = require("teaser-webpack-plugin")
+const TerserPlugin = require("terser-webpack-plugin");
 
 module.exports = {
   mode: "production",
@@ -44,16 +44,23 @@ module.exports = {
       },
     ],
   },
+  externalsType: "script",
+  externals: {
+    react: ["https://unpkg.com/react@17/umd/react.development.js", "React"],
+    "react-dom": [
+      "https://unpkg.com/react-dom@17/umd/react-dom.development.js",
+      "ReactDOM",
+    ],
+  },
   optimization: {
     splitChunks: {
       chunks: "all",
     },
     minimizer: [
-      new teaserWebpackPlugin({
-        extractComments: false
-      })
-    ]
-
+      new TerserPlugin({
+        extractComments: false,
+      }),
+    ],
   },
   plugins: [
     new CleanWebpackPlugin(),
