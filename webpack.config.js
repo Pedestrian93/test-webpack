@@ -12,6 +12,7 @@ module.exports = {
     index: "./src/index.js",
     //  print: "./src/print.js"
   },
+  devtool: 'source-map',
   module: {
     rules: [
       {

@@ -4,12 +4,14 @@ const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const miniCssExtractPlugin = require("mini-css-extract-plugin");
 const optimizeCssAssetsWebpackPlugin = require("optimize-css-assets-webpack-plugin");
 const postcssPresetEnv = require("postcss-preset-env");
+const teaserWebpackPlugin = require("teaser-webpack-plugin")
 
 module.exports = {
   mode: "production",
   entry: {
     index: "./src/index.js",
   },
+  devtool: "source-map",
   module: {
     rules: [
       {
@@ -43,6 +45,15 @@ module.exports = {
     ],
   },
   optimization: {
+    splitChunks: {
+      chunks: "all",
+    },
+    minimizer: [
+      new teaserWebpackPlugin({
+        extractComments: false
+      })
+    ]
+
   },
   plugins: [
     new CleanWebpackPlugin(),
