@@ -21,4 +21,4 @@ function add(_a, _b) {
   console.log(result.join(''));
 }
 
-add('1212', '3456789'); // expect 3458001
+export default add;

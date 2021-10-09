@@ -1,5 +1,6 @@
-const addBigInt = (a, b) => {
-  console.log(333);
-};
-
-export { addBigInt as default };
+/* eslint-disable global-require */
+if (process.env.NODE_ENV === 'production') {
+  module.exports = require('../dist/large-number');
+} else {
+  module.exports = require('../dist/large-number.min');
+}
