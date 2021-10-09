@@ -1,20 +1,27 @@
-import React from "react";
-import ReactDom from "react-dom";
-import logo from "./images/bilibili.png";
-import "./index.less";
+import React from 'react';
+import ReactDom from 'react-dom';
+import { Button } from 'antd';
+import logo from './images/bilibili.png';
+import { a } from './utils/treeShaking';
+import './index.less';
 
 function A() {
   const onClick = () => {
-    console.log('11')
-  }
+    a();
+    import('lodash/join').then(({ default: join }) => {
+      console.log(join(['a', 'b', 'c']));
+    });
+  };
+
   return (
     <div>
+      <Button type="primary">antd Button</Button>
       cccxsssss
-      <button onClick ={onClick}>jjjj</button>
+      <Button onClick={onClick}>jjjj</Button>
       <h1 className="a">ssjjj</h1>
-      <img src={logo}></img>
+      <img src={logo} alt="" />
     </div>
   );
 }
 
-ReactDom.render(<A />, document.getElementById("root"));
+ReactDom.render(<A />, document.getElementById('root'));

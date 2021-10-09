@@ -16,6 +16,7 @@ module.exports = {
     rules: [
       {
         test: /\.js$/,
+        excludes: /node_modules/,
         use: "babel-loader",
       },
       {
@@ -56,6 +57,7 @@ module.exports = {
     splitChunks: {
       chunks: "all",
     },
+    minimize: false,
     minimizer: [
       new TerserPlugin({
         extractComments: false,
@@ -78,7 +80,6 @@ module.exports = {
     new miniCssExtractPlugin({
       filename: `[name]_[contenthash:8].css`,
     }),
-    new optimizeCssAssetsWebpackPlugin(),
   ],
   devServer: {
     static: "./dist",
